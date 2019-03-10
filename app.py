@@ -35,8 +35,6 @@ User AUTH
 
 
 # Login
-
-
 @app.route('/login', methods=['GET'])
 def login():
 	# Check if user is not logged in already
@@ -50,13 +48,12 @@ def login():
 		# Render the page for user to be able to log in
 		return render_template("login.html")
 
-
 # Check user login details from login form
 @app.route('/user_auth', methods=['POST'])
 def user_auth():
 	form = request.form.to_dict()
 	user_in_db = users_collection.find_one({"username": form['username']})
-	# Search for user in database
+	# Check for user in database
 	if user_in_db:
 		# If passwords match (hashed / real password)
 		if check_password_hash(user_in_db['password'], form['user_password']):
@@ -75,12 +72,8 @@ def user_auth():
 	else:
 		flash("You must be registered!")
 		return redirect(url_for('register'))
-		
-    
-
 
 # Sign up
-
 @app.route('/register', methods=['GET', 'POST'])
 def register():
 	# Check if user is not logged in already
@@ -125,8 +118,6 @@ def register():
 	return render_template("register.html")
 
 # Log out
-
-
 @app.route('/logout')
 def logout():
 	# Clear the session
@@ -135,11 +126,9 @@ def logout():
 	return redirect(url_for('index'))
 
 # Profile Page
-
-
 @app.route('/profile/<user>')
 def profile(user): 
-	# Check if user is not logged in already
+	# Check if user is logged in
 	if 'user' in session:
 		# If so get the user and pass him to template for now
 		user_in_db = users_collection.find_one({"username": user})
@@ -148,7 +137,7 @@ def profile(user):
 		flash("You must be logged in!")
 		return redirect(url_for('index'))
 
-
+# Admin area
 @app.route('/admin')
 def admin():
 	if 'user' in session:
