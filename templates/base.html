@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<meta name="description" content="Cookbook">
+		<meta name="author" content="Miroslav Svec">
+		<!-- Bootstrap  CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+			integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		<!-- FA -->
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+			integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+		<!-- Custom styles -->
+		<link rel="stylesheet" href="{{url_for('static', filename='custom/css/style.css')}}" type="text/css" />
+		{% block css %}	{% endblock css %}
+
+		<title>{{ title }}</title>
+	</head>
+
+	<body>
+		<!-- Nav -->
+		<nav class="navbar navbar-expand-md navbar-light fixed-top pb-3 pt-3">
+			<div class="container">
+				<a class="navbar-brand font-weight-bold 
+				{% if request.path == '/' %} 
+				active
+				{% endif %}
+				" href="/">DCD</a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav"
+					aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+		
+				<div class="collapse navbar-collapse" id="main-nav">
+					<ul class="navbar-nav ml-auto text-center">				
+						{% if session.user %}
+						<li class="nav-item {% if 'profile' in request.path %} active {% endif %}">
+							<a class="nav-link" href="{{url_for('profile', user=session.user)}}">Profile</a>
+						</li>
+						<li class="nav-item hidden-md-down">
+							<a class="nav-link" href="{{url_for('logout')}}">Logout</a>
+						</li>
+						{% if session.user == "admin" %}
+						<li class="nav-item hidden-md-down {% if 'admin' in request.path  and 'profile' not in request.path %} active {% endif %}">
+							<a class="nav-link" href="{{url_for('admin')}}">Admin</a>
+						</li>
+						{% endif %}
+						{% else %}
+						<li class="nav-item hidden-md-down {% if 'register' in request.path %} active {% endif %}">
+							<a class="nav-link" href="{{url_for('register')}}">Register</a>
+						</li>
+						<li class="nav-item hidden-md-down {% if 'login' in request.path %} active {% endif %}">
+							<a class="nav-link" href="{{url_for('login')}}">Login</a>
+						</li>
+						{% endif %}		
+					</ul>
+				</div>
+			</div>
+
+			<!-- Flashed messages alerts modal -->
+			<div id="alerts" class="container-fluid">
+				<div class="row justify-content-around">
+					<div id="messages">
+						{% with messages = get_flashed_messages() %}
+						{% if messages %}
+						{% for message in messages %}
+						<p class="text-center">{{ message }}</p>
+						{% endfor %}
+						{% endif %}
+						{% endwith %}
+					</div>
+				</div>
+			</div>
+		</nav>	
+
+		<!-- Main Content -->
+		<main id="main" class="pt-5">
+			{% block main_content %} {% endblock main_content %}
+		</main>	
+
+		<!-- Footer -->
+		<footer id="footer" class="container-fluid">
+			<div class="row pt-5">
+				<div class="col-12 text-center footer-links">
+					<a href="https://twitter.com/" target="_blank" class="rounded-circle">
+						<i class="fab fa-twitter fa-2x" aria-hidden="true"></i>
+					</a>
+					<a href="https://www.facebook.com/" target="_blank">
+						<i class="fab fa-facebook-f fa-2x" aria-hidden="true"></i>
+					</a>
+					<a href="https://www.linkedin.com/" target="_blank">
+						<i class="fab fa-linkedin-in fa-2x" aria-hidden="true"></i>
+					</a>
+					<a href="https://www.instagram.com/" target="_blank">
+						<i class="fab fa-instagram fa-2x" aria-hidden="true"></i>
+					</a>
+				</div>
+			</div>
+		</footer>
+
+		<!-- Bootstrap core JavaScript-->
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+			integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+			integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+			crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+			integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+			crossorigin="anonymous"></script>
+		<!-- Main JS-->
+		<script src="{{ url_for('static', filename='custom/js/main.js') }}"></script>
+
+		<!-- Custom scripts -->
+		{% block scripts %}{% endblock scripts %}
+	</body>
+</html>
