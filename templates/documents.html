@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block main_content %}
+
+<h1> Documents </h1>
+
+<!-- 
+	First check if you actually need a pagination....
+	If you have 6 documents for example and you display 6 documents as well 
+	there is no need for pagination ...
+ -->
+{% if args.num_results > args.p_limit %}
+<div class="container">
+	<div class="row justify-content-around">
+		<!-- 
+			If this is first page (offset == 0) 
+			prev_url link should not be displayed 
+		-->
+		{% if args.p_offset > 0 %}
+		<a href="{{args.prev_url}}"><i class="fas fa-angle-left fa-6x"></i></a>
+		{% endif %}
+		<!-- 
+			If this is last page (offset + limit == lenght of the documents) 
+			prev_url link should not be displayed 
+		-->
+		{% if args.p_offset + args.p_limit < args.num_results  %}
+		<a href="{{args.next_url}}"><i class="fas fa-angle-right fa-6x "></i></a>
+		{% endif %}
+	</div>
+</div>
+{% endif %}
+
+{% endblock main_content %}

@@ -23,10 +23,56 @@ users_collection = mongo.db.users
 recipes_collection = mongo.db.recipes
 
 
+
+
+
+
 @app.route('/')
 @app.route('/index')
 def index():
-    return render_template("index.html")
+	return render_template("index.html")
+
+
+""" 
+Documents with pagination
+"""
+
+@app.route('/documents')
+def documents():
+	# The URL looks something like 
+	# /documents?limit=6&offset=0
+	 
+	# Request the limit (in the example URL == 6)	
+	p_limit = int(request.args['limit'])
+
+	# Request the offset (in the example URL == 0)	
+	p_offset = int(request.args['offset'])
+	
+	# Prevent user to enter pages with negative values (server error)
+	# only if he manually enters the value to URL
+	if p_offset < 0:
+		p_offset = 0
+
+	# Prevent user to enter pages with values over the collection count(server error)
+	# only if he manually enters the value to URL
+	num_results = recipes_collection.find().count(),
+	if p_offset > num_results:
+		p_offset = num_results
+
+	# Send the query with limit and offset taken from args
+	recipes = recipes_collection.find().limit(p_limit).skip(p_offset)
+
+	args = {
+		"p_limit" : p_limit,
+		"p_offset" : p_offset,
+		"num_results" : num_results,
+		"next_url" : f"/documents?limit={str(p_limit)}&offset={str(p_offset + p_limit)}",
+		"prev_url" : f"/documents?limit={str(p_limit)}&offset={str(p_offset - p_limit)}",
+		"recipes" : recipes
+	}
+	return render_template("documents.html", args=args)
+
+
 
 
 """
@@ -150,11 +196,7 @@ def admin():
 		flash('You must be logged')
 		return redirect(url_for('index'))
 
-
-
 	
-
-
 
 
 

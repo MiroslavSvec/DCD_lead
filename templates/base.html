@@ -48,6 +48,9 @@
 						{% endif %}
 						{% else %}
 						<li class="nav-item hidden-md-down {% if 'register' in request.path %} active {% endif %}">
+							<a class="nav-link" href="{{ url_for('documents', limit=6, offset=0) }}">Documents</a>
+						</li>
+						<li class="nav-item hidden-md-down {% if 'register' in request.path %} active {% endif %}">
 							<a class="nav-link" href="{{url_for('register')}}">Register</a>
 						</li>
 						<li class="nav-item hidden-md-down {% if 'login' in request.path %} active {% endif %}">
