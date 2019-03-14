@@ -5,6 +5,3 @@ DCD_lead sessions for students
 
 ### User Auth
 
-## Session 2
-
-### Pagination of documents (mLab)
