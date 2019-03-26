@@ -1,6 +1,8 @@
 # DCD_lead
 DCD_lead sessions for students
 
-## Session 2
+## Session 3
 
-### Pagination of documents (mLab)
+### CRUD
+
+- Many filters in one query
