@@ -4,6 +4,17 @@
 
 <h1> Documents </h1>
 
+<!-- Simple documnet rendering to HTML (title only) -->
+
+<div class="container pt-5">
+	{% for x in args.recipes %}
+	<p class="text-center">
+		{{ x.title|title }}
+	</p>
+	<hr class="py-5">
+	{% endfor %}
+</div>
+
 <!-- 
 	First check if you actually need a pagination....
 	If you have 6 documents for example and you display 6 documents as well 

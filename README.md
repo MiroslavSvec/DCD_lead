@@ -1,8 +1,8 @@
 # DCD_lead
 DCD_lead sessions for students
 
-## Session 3
+## Session 5
 
-### CRUD
+### Ajax
 
-- Many filters in one query
+- Sending query to sever via AJAX and updating the context instantly 

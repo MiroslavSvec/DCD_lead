@@ -1,575 +1,910 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% block main_content %}
 
-{% block main_content %}
-
-<h1> Search </h1>
+<h1 id="num-results">Search</h1>
 
 <div class="search-overlay container-fluid">
 	<div class="content-wrapper pt-5 mb-5 row vh100">
-		<form id="search-form" class="container-fluid px-5" method="POST" action="/search">
+		<form
+			id="search-form"
+			class="container-fluid px-5"
+			method="POST"
+			action="/search"
+		>
 			<div class="row">
-				<h2 class="col-12 py-3 text-center"> Or by tags</h2>
+				<h2 class="col-12 py-3 text-center">Or by tags</h2>
 			</div>
 			<div class="row">
 				<div class="form-check col-sm-6 col-md-3">
 					<h4 class="mt-3">Dish Types</h4>
-					<hr>
+					<hr />
 					<div class=" row">
 						<div class="col-6">
-
 							<div class="form-check">
-								<input class="form-check-input" name="dishTypes-01" type="checkbox" value="marinade"
-									id="dishTypes-01">
+								<input
+									class="form-check-input"
+									name="dishTypes-01"
+									type="checkbox"
+									value="marinade"
+									id="dishTypes-01"
+								/>
 								<label class="form-check-label" for="dishTypes-01">
 									Marinade
 								</label>
 							</div>
 
 							<div class="form-check">
-								<input class="form-check-input" name="dishTypes-02" type="checkbox" value="salad"
-									id="dishTypes-02">
+								<input
+									class="form-check-input"
+									name="dishTypes-02"
+									type="checkbox"
+									value="salad"
+									id="dishTypes-02"
+								/>
 								<label class="form-check-label" for="dishTypes-02">
 									Salad
 								</label>
 							</div>
 
 							<div class="form-check">
-								<input class="form-check-input" name="dishTypes-03" type="checkbox" value="main dish"
-									id="dishTypes-03">
+								<input
+									class="form-check-input"
+									name="dishTypes-03"
+									type="checkbox"
+									value="main dish"
+									id="dishTypes-03"
+								/>
 								<label class="form-check-label" for="dishTypes-03">
 									Main Dish
 								</label>
 							</div>
 
 							<div class="form-check">
-								<input class="form-check-input" name="dishTypes-04" type="checkbox" value="side dish"
-									id="dishTypes-04">
+								<input
+									class="form-check-input"
+									name="dishTypes-04"
+									type="checkbox"
+									value="side dish"
+									id="dishTypes-04"
+								/>
 								<label class="form-check-label" for="dishTypes-04">
 									Side Dish
 								</label>
 							</div>
 
 							<div class="form-check">
-								<input class="form-check-input" name="dishTypes-05" type="checkbox" value="appetizer"
-									id="dishTypes-05">
+								<input
+									class="form-check-input"
+									name="dishTypes-05"
+									type="checkbox"
+									value="appetizer"
+									id="dishTypes-05"
+								/>
 								<label class="form-check-label" for="dishTypes-05">
 									Appetizer
 								</label>
 							</div>
 
 							<div class="form-check">
-								<input class="form-check-input" name="dishTypes-06" type="checkbox" value="antipasto"
-									id="dishTypes-06">
+								<input
+									class="form-check-input"
+									name="dishTypes-06"
+									type="checkbox"
+									value="antipasto"
+									id="dishTypes-06"
+								/>
 								<label class="form-check-label" for="dishTypes-06">
 									Antipasto
 								</label>
 							</div>
 
 							<div class="form-check">
-								<input class="form-check-input" name="dishTypes-07" type="checkbox" value="fingerfood"
-									id="dishTypes-07">
+								<input
+									class="form-check-input"
+									name="dishTypes-07"
+									type="checkbox"
+									value="fingerfood"
+									id="dishTypes-07"
+								/>
 								<label class="form-check-label" for="dishTypes-07">
 									Fingerfood
 								</label>
 							</div>
 
 							<div class="form-check">
-								<input class="form-check-input" name="dishTypes-08" type="checkbox" value="soup"
-									id="dishTypes-08">
+								<input
+									class="form-check-input"
+									name="dishTypes-08"
+									type="checkbox"
+									value="soup"
+									id="dishTypes-08"
+								/>
 								<label class="form-check-label" for="dishTypes-08">
 									Soup
 								</label>
 							</div>
 
 							<div class="form-check">
-								<input class="form-check-input" name="dishTypes-09" type="checkbox" value="spread"
-									id="dishTypes-09">
+								<input
+									class="form-check-input"
+									name="dishTypes-09"
+									type="checkbox"
+									value="spread"
+									id="dishTypes-09"
+								/>
 								<label class="form-check-label" for="dishTypes-09">
 									Spread
 								</label>
 							</div>
 
 							<div class="form-check">
-								<input class="form-check-input" name="dishTypes-010" type="checkbox" value="drink"
-									id="dishTypes-010">
+								<input
+									class="form-check-input"
+									name="dishTypes-010"
+									type="checkbox"
+									value="drink"
+									id="dishTypes-010"
+								/>
 								<label class="form-check-label" for="dishTypes-010">
 									Drink
 								</label>
 							</div>
 
 							<div class="form-check">
-								<input class="form-check-input" name="dishTypes-011" type="checkbox" value="lunch"
-									id="dishTypes-011">
+								<input
+									class="form-check-input"
+									name="dishTypes-011"
+									type="checkbox"
+									value="lunch"
+									id="dishTypes-011"
+								/>
 								<label class="form-check-label" for="dishTypes-011">
 									Lunch
 								</label>
 							</div>
 
 							<div class="form-check">
-								<input class="form-check-input" name="dishTypes-012" type="checkbox" value="condiment"
-									id="dishTypes-012">
+								<input
+									class="form-check-input"
+									name="dishTypes-012"
+									type="checkbox"
+									value="condiment"
+									id="dishTypes-012"
+								/>
 								<label class="form-check-label" for="dishTypes-012">
 									Condiment
 								</label>
 							</div>
 
 							<div class="form-check">
-								<input class="form-check-input" name="dishTypes-013" type="checkbox" value="beverage"
-									id="dishTypes-013">
+								<input
+									class="form-check-input"
+									name="dishTypes-013"
+									type="checkbox"
+									value="beverage"
+									id="dishTypes-013"
+								/>
 								<label class="form-check-label" for="dishTypes-013">
 									Beverage
 								</label>
 							</div>
 
 							<div class="form-check">
-								<input class="form-check-input" name="dishTypes-014" type="checkbox" value="dip"
-									id="dishTypes-014">
+								<input
+									class="form-check-input"
+									name="dishTypes-014"
+									type="checkbox"
+									value="dip"
+									id="dishTypes-014"
+								/>
 								<label class="form-check-label" for="dishTypes-014">
 									Dip
 								</label>
 							</div>
 
 							<div class="form-check">
-								<input class="form-check-input" name="dishTypes-015" type="checkbox" value="antipasti"
-									id="dishTypes-015">
+								<input
+									class="form-check-input"
+									name="dishTypes-015"
+									type="checkbox"
+									value="antipasti"
+									id="dishTypes-015"
+								/>
 								<label class="form-check-label" for="dishTypes-015">
 									Antipasti
 								</label>
 							</div>
-
 						</div>
 						<div class="col-6">
-
 							<div class="form-check">
-								<input class="form-check-input" name="dishTypes-1" type="checkbox" value="sauce"
-									id="dishTypes-1">
+								<input
+									class="form-check-input"
+									name="dishTypes-1"
+									type="checkbox"
+									value="sauce"
+									id="dishTypes-1"
+								/>
 								<label class="form-check-label" for="dishTypes-1">
 									Sauce
 								</label>
 							</div>
 
 							<div class="form-check">
-								<input class="form-check-input" name="dishTypes-2" type="checkbox" value="seasoning"
-									id="dishTypes-2">
+								<input
+									class="form-check-input"
+									name="dishTypes-2"
+									type="checkbox"
+									value="seasoning"
+									id="dishTypes-2"
+								/>
 								<label class="form-check-label" for="dishTypes-2">
 									Seasoning
 								</label>
 							</div>
 
 							<div class="form-check">
-								<input class="form-check-input" name="dishTypes-3" type="checkbox" value="dessert"
-									id="dishTypes-3">
+								<input
+									class="form-check-input"
+									name="dishTypes-3"
+									type="checkbox"
+									value="dessert"
+									id="dishTypes-3"
+								/>
 								<label class="form-check-label" for="dishTypes-3">
 									Dessert
 								</label>
 							</div>
 
 							<div class="form-check">
-								<input class="form-check-input" name="dishTypes-4" type="checkbox" value="breakfast"
-									id="dishTypes-4">
+								<input
+									class="form-check-input"
+									name="dishTypes-4"
+									type="checkbox"
+									value="breakfast"
+									id="dishTypes-4"
+								/>
 								<label class="form-check-label" for="dishTypes-4">
 									Breakfast
 								</label>
 							</div>
 
 							<div class="form-check">
-								<input class="form-check-input" name="dishTypes-5" type="checkbox" value="morning meal"
-									id="dishTypes-5">
+								<input
+									class="form-check-input"
+									name="dishTypes-5"
+									type="checkbox"
+									value="morning meal"
+									id="dishTypes-5"
+								/>
 								<label class="form-check-label" for="dishTypes-5">
 									Morning Meal
 								</label>
 							</div>
 
 							<div class="form-check">
-								<input class="form-check-input" name="dishTypes-6" type="checkbox" value="main course"
-									id="dishTypes-6">
+								<input
+									class="form-check-input"
+									name="dishTypes-6"
+									type="checkbox"
+									value="main course"
+									id="dishTypes-6"
+								/>
 								<label class="form-check-label" for="dishTypes-6">
 									Main Course
 								</label>
 							</div>
 
 							<div class="form-check">
-								<input class="form-check-input" name="dishTypes-7" type="checkbox" value="brunch"
-									id="dishTypes-7">
+								<input
+									class="form-check-input"
+									name="dishTypes-7"
+									type="checkbox"
+									value="brunch"
+									id="dishTypes-7"
+								/>
 								<label class="form-check-label" for="dishTypes-7">
 									Brunch
 								</label>
 							</div>
 
 							<div class="form-check">
-								<input class="form-check-input" name="dishTypes-8" type="checkbox"
-									value="hor d&#39;oeuvre" id="dishTypes-8">
+								<input
+									class="form-check-input"
+									name="dishTypes-8"
+									type="checkbox"
+									value="hor d&#39;oeuvre"
+									id="dishTypes-8"
+								/>
 								<label class="form-check-label" for="dishTypes-8">
 									Hor D&#39;oeuvre
 								</label>
 							</div>
 
 							<div class="form-check">
-								<input class="form-check-input" name="dishTypes-9" type="checkbox" value="dinner"
-									id="dishTypes-9">
+								<input
+									class="form-check-input"
+									name="dishTypes-9"
+									type="checkbox"
+									value="dinner"
+									id="dishTypes-9"
+								/>
 								<label class="form-check-label" for="dishTypes-9">
 									Dinner
 								</label>
 							</div>
 
 							<div class="form-check">
-								<input class="form-check-input" name="dishTypes-10" type="checkbox" value="starter"
-									id="dishTypes-10">
+								<input
+									class="form-check-input"
+									name="dishTypes-10"
+									type="checkbox"
+									value="starter"
+									id="dishTypes-10"
+								/>
 								<label class="form-check-label" for="dishTypes-10">
 									Starter
 								</label>
 							</div>
 
 							<div class="form-check">
-								<input class="form-check-input" name="dishTypes-11" type="checkbox" value="snack"
-									id="dishTypes-11">
+								<input
+									class="form-check-input"
+									name="dishTypes-11"
+									type="checkbox"
+									value="snack"
+									id="dishTypes-11"
+								/>
 								<label class="form-check-label" for="dishTypes-11">
 									Snack
 								</label>
 							</div>
 
 							<div class="form-check">
-								<input class="form-check-input" name="dishTypes-12" type="checkbox" value="bread"
-									id="dishTypes-12">
+								<input
+									class="form-check-input"
+									name="dishTypes-12"
+									type="checkbox"
+									value="bread"
+									id="dishTypes-12"
+								/>
 								<label class="form-check-label" for="dishTypes-12">
 									Bread
 								</label>
 							</div>
-
 						</div>
 					</div>
 				</div>
 				<div class="form-check col-sm-6 col-md-3">
 					<h4 class="mt-3">Cuisines</h4>
-					<hr>
+					<hr />
 					<div class="row">
 						<div class="col-6">
-
 							<div class="form-check">
-								<input class="form-check-input" name="cuisines-01" type="checkbox" value="nordic"
-									id="cuisines-01">
+								<input
+									class="form-check-input"
+									name="cuisines-01"
+									type="checkbox"
+									value="nordic"
+									id="cuisines-01"
+								/>
 								<label class="form-check-label" for="cuisines-01">
 									Nordic
 								</label>
 							</div>
 
 							<div class="form-check">
-								<input class="form-check-input" name="cuisines-02" type="checkbox"
-									value="eastern european" id="cuisines-02">
+								<input
+									class="form-check-input"
+									name="cuisines-02"
+									type="checkbox"
+									value="eastern european"
+									id="cuisines-02"
+								/>
 								<label class="form-check-label" for="cuisines-02">
 									Eastern European
 								</label>
 							</div>
 
 							<div class="form-check">
-								<input class="form-check-input" name="cuisines-03" type="checkbox" value="asian"
-									id="cuisines-03">
+								<input
+									class="form-check-input"
+									name="cuisines-03"
+									type="checkbox"
+									value="asian"
+									id="cuisines-03"
+								/>
 								<label class="form-check-label" for="cuisines-03">
 									Asian
 								</label>
 							</div>
 
 							<div class="form-check">
-								<input class="form-check-input" name="cuisines-04" type="checkbox" value="southern"
-									id="cuisines-04">
+								<input
+									class="form-check-input"
+									name="cuisines-04"
+									type="checkbox"
+									value="southern"
+									id="cuisines-04"
+								/>
 								<label class="form-check-label" for="cuisines-04">
 									Southern
 								</label>
 							</div>
 
 							<div class="form-check">
-								<input class="form-check-input" name="cuisines-05" type="checkbox" value="barbecu"
-									id="cuisines-05">
+								<input
+									class="form-check-input"
+									name="cuisines-05"
+									type="checkbox"
+									value="barbecu"
+									id="cuisines-05"
+								/>
 								<label class="form-check-label" for="cuisines-05">
 									Barbecu
 								</label>
 							</div>
 
 							<div class="form-check">
-								<input class="form-check-input" name="cuisines-06" type="checkbox"
-									value="south american" id="cuisines-06">
+								<input
+									class="form-check-input"
+									name="cuisines-06"
+									type="checkbox"
+									value="south american"
+									id="cuisines-06"
+								/>
 								<label class="form-check-label" for="cuisines-06">
 									South American
 								</label>
 							</div>
 
 							<div class="form-check">
-								<input class="form-check-input" name="cuisines-07" type="checkbox" value="creol"
-									id="cuisines-07">
+								<input
+									class="form-check-input"
+									name="cuisines-07"
+									type="checkbox"
+									value="creol"
+									id="cuisines-07"
+								/>
 								<label class="form-check-label" for="cuisines-07">
 									Creol
 								</label>
 							</div>
 
 							<div class="form-check">
-								<input class="form-check-input" name="cuisines-08" type="checkbox" value="jewish"
-									id="cuisines-08">
+								<input
+									class="form-check-input"
+									name="cuisines-08"
+									type="checkbox"
+									value="jewish"
+									id="cuisines-08"
+								/>
 								<label class="form-check-label" for="cuisines-08">
 									Jewish
 								</label>
 							</div>
 
 							<div class="form-check">
-								<input class="form-check-input" name="cuisines-09" type="checkbox"
-									value="latin american" id="cuisines-09">
+								<input
+									class="form-check-input"
+									name="cuisines-09"
+									type="checkbox"
+									value="latin american"
+									id="cuisines-09"
+								/>
 								<label class="form-check-label" for="cuisines-09">
 									Latin American
 								</label>
 							</div>
 
 							<div class="form-check">
-								<input class="form-check-input" name="cuisines-010" type="checkbox" value="english"
-									id="cuisines-010">
+								<input
+									class="form-check-input"
+									name="cuisines-010"
+									type="checkbox"
+									value="english"
+									id="cuisines-010"
+								/>
 								<label class="form-check-label" for="cuisines-010">
 									English
 								</label>
 							</div>
 
 							<div class="form-check">
-								<input class="form-check-input" name="cuisines-011" type="checkbox" value="scottish"
-									id="cuisines-011">
+								<input
+									class="form-check-input"
+									name="cuisines-011"
+									type="checkbox"
+									value="scottish"
+									id="cuisines-011"
+								/>
 								<label class="form-check-label" for="cuisines-011">
 									Scottish
 								</label>
 							</div>
 
 							<div class="form-check">
-								<input class="form-check-input" name="cuisines-012" type="checkbox"
-									value="mediterranean" id="cuisines-012">
+								<input
+									class="form-check-input"
+									name="cuisines-012"
+									type="checkbox"
+									value="mediterranean"
+									id="cuisines-012"
+								/>
 								<label class="form-check-label" for="cuisines-012">
 									Mediterranean
 								</label>
 							</div>
 
 							<div class="form-check">
-								<input class="form-check-input" name="cuisines-013" type="checkbox" value="indian"
-									id="cuisines-013">
+								<input
+									class="form-check-input"
+									name="cuisines-013"
+									type="checkbox"
+									value="indian"
+									id="cuisines-013"
+								/>
 								<label class="form-check-label" for="cuisines-013">
 									Indian
 								</label>
 							</div>
 
 							<div class="form-check">
-								<input class="form-check-input" name="cuisines-014" type="checkbox" value="american"
-									id="cuisines-014">
+								<input
+									class="form-check-input"
+									name="cuisines-014"
+									type="checkbox"
+									value="american"
+									id="cuisines-014"
+								/>
 								<label class="form-check-label" for="cuisines-014">
 									American
 								</label>
 							</div>
 
 							<div class="form-check">
-								<input class="form-check-input" name="cuisines-015" type="checkbox" value="bbq"
-									id="cuisines-015">
+								<input
+									class="form-check-input"
+									name="cuisines-015"
+									type="checkbox"
+									value="bbq"
+									id="cuisines-015"
+								/>
 								<label class="form-check-label" for="cuisines-015">
 									Bbq
 								</label>
 							</div>
-
 						</div>
 						<div class="col-6">
-
 							<div class="form-check">
-								<input class="form-check-input" name="cuisines-1" type="checkbox" value="scandinavian"
-									id="cuisines-1">
+								<input
+									class="form-check-input"
+									name="cuisines-1"
+									type="checkbox"
+									value="scandinavian"
+									id="cuisines-1"
+								/>
 								<label class="form-check-label" for="cuisines-1">
 									Scandinavian
 								</label>
 							</div>
 
 							<div class="form-check">
-								<input class="form-check-input" name="cuisines-2" type="checkbox" value="mexican"
-									id="cuisines-2">
+								<input
+									class="form-check-input"
+									name="cuisines-2"
+									type="checkbox"
+									value="mexican"
+									id="cuisines-2"
+								/>
 								<label class="form-check-label" for="cuisines-2">
 									Mexican
 								</label>
 							</div>
 
 							<div class="form-check">
-								<input class="form-check-input" name="cuisines-3" type="checkbox" value="british"
-									id="cuisines-3">
+								<input
+									class="form-check-input"
+									name="cuisines-3"
+									type="checkbox"
+									value="british"
+									id="cuisines-3"
+								/>
 								<label class="form-check-label" for="cuisines-3">
 									British
 								</label>
 							</div>
 
 							<div class="form-check">
-								<input class="form-check-input" name="cuisines-4" type="checkbox" value="cajun"
-									id="cuisines-4">
+								<input
+									class="form-check-input"
+									name="cuisines-4"
+									type="checkbox"
+									value="cajun"
+									id="cuisines-4"
+								/>
 								<label class="form-check-label" for="cuisines-4">
 									Cajun
 								</label>
 							</div>
 
 							<div class="form-check">
-								<input class="form-check-input" name="cuisines-5" type="checkbox" value="spanish"
-									id="cuisines-5">
+								<input
+									class="form-check-input"
+									name="cuisines-5"
+									type="checkbox"
+									value="spanish"
+									id="cuisines-5"
+								/>
 								<label class="form-check-label" for="cuisines-5">
 									Spanish
 								</label>
 							</div>
 
 							<div class="form-check">
-								<input class="form-check-input" name="cuisines-6" type="checkbox" value="french"
-									id="cuisines-6">
+								<input
+									class="form-check-input"
+									name="cuisines-6"
+									type="checkbox"
+									value="french"
+									id="cuisines-6"
+								/>
 								<label class="form-check-label" for="cuisines-6">
 									French
 								</label>
 							</div>
 
 							<div class="form-check">
-								<input class="form-check-input" name="cuisines-7" type="checkbox" value="european"
-									id="cuisines-7">
+								<input
+									class="form-check-input"
+									name="cuisines-7"
+									type="checkbox"
+									value="european"
+									id="cuisines-7"
+								/>
 								<label class="form-check-label" for="cuisines-7">
 									European
 								</label>
 							</div>
 
 							<div class="form-check">
-								<input class="form-check-input" name="cuisines-8" type="checkbox" value="german"
-									id="cuisines-8">
+								<input
+									class="form-check-input"
+									name="cuisines-8"
+									type="checkbox"
+									value="german"
+									id="cuisines-8"
+								/>
 								<label class="form-check-label" for="cuisines-8">
 									German
 								</label>
 							</div>
 
 							<div class="form-check">
-								<input class="form-check-input" name="cuisines-9" type="checkbox" value="chines"
-									id="cuisines-9">
+								<input
+									class="form-check-input"
+									name="cuisines-9"
+									type="checkbox"
+									value="chines"
+									id="cuisines-9"
+								/>
 								<label class="form-check-label" for="cuisines-9">
 									Chines
 								</label>
 							</div>
 
 							<div class="form-check">
-								<input class="form-check-input" name="cuisines-10" type="checkbox" value="caribbean"
-									id="cuisines-10">
+								<input
+									class="form-check-input"
+									name="cuisines-10"
+									type="checkbox"
+									value="caribbean"
+									id="cuisines-10"
+								/>
 								<label class="form-check-label" for="cuisines-10">
 									Caribbean
 								</label>
 							</div>
 
 							<div class="form-check">
-								<input class="form-check-input" name="cuisines-11" type="checkbox" value="italian"
-									id="cuisines-11">
+								<input
+									class="form-check-input"
+									name="cuisines-11"
+									type="checkbox"
+									value="italian"
+									id="cuisines-11"
+								/>
 								<label class="form-check-label" for="cuisines-11">
 									Italian
 								</label>
 							</div>
 
 							<div class="form-check">
-								<input class="form-check-input" name="cuisines-12" type="checkbox"
-									value="central american" id="cuisines-12">
+								<input
+									class="form-check-input"
+									name="cuisines-12"
+									type="checkbox"
+									value="central american"
+									id="cuisines-12"
+								/>
 								<label class="form-check-label" for="cuisines-12">
 									Central American
 								</label>
 							</div>
-
 						</div>
 					</div>
 				</div>
 				<div class="form-check col-sm-6 col-md-3">
 					<h4 class="mt-3">Diets</h4>
-					<hr>
+					<hr />
 
 					<div class="form-check">
-						<input class="form-check-input" name="diets-1" type="checkbox" value="whole 30" id="diets-1">
+						<input
+							class="form-check-input"
+							name="diets-1"
+							type="checkbox"
+							value="whole 30"
+							id="diets-1"
+						/>
 						<label class="form-check-label" for="diets-1">
 							Whole 30
 						</label>
 					</div>
 
 					<div class="form-check">
-						<input class="form-check-input" name="diets-2" type="checkbox" value="dairy free" id="diets-2">
+						<input
+							class="form-check-input"
+							name="diets-2"
+							type="checkbox"
+							value="dairy free"
+							id="diets-2"
+						/>
 						<label class="form-check-label" for="diets-2">
 							Dairy Free
 						</label>
 					</div>
 
 					<div class="form-check">
-						<input class="form-check-input" name="diets-3" type="checkbox" value="pescatarian" id="diets-3">
+						<input
+							class="form-check-input"
+							name="diets-3"
+							type="checkbox"
+							value="pescatarian"
+							id="diets-3"
+						/>
 						<label class="form-check-label" for="diets-3">
 							Pescatarian
 						</label>
 					</div>
 
 					<div class="form-check">
-						<input class="form-check-input" name="diets-4" type="checkbox" value="vegan" id="diets-4">
+						<input
+							class="form-check-input"
+							name="diets-4"
+							type="checkbox"
+							value="vegan"
+							id="diets-4"
+						/>
 						<label class="form-check-label" for="diets-4">
 							Vegan
 						</label>
 					</div>
 
 					<div class="form-check">
-						<input class="form-check-input" name="diets-5" type="checkbox" value="paleolithic" id="diets-5">
+						<input
+							class="form-check-input"
+							name="diets-5"
+							type="checkbox"
+							value="paleolithic"
+							id="diets-5"
+						/>
 						<label class="form-check-label" for="diets-5">
 							Paleolithic
 						</label>
 					</div>
 
 					<div class="form-check">
-						<input class="form-check-input" name="diets-6" type="checkbox" value="gluten free" id="diets-6">
+						<input
+							class="form-check-input"
+							name="diets-6"
+							type="checkbox"
+							value="gluten free"
+							id="diets-6"
+						/>
 						<label class="form-check-label" for="diets-6">
 							Gluten Free
 						</label>
 					</div>
 
 					<div class="form-check">
-						<input class="form-check-input" name="diets-7" type="checkbox" value="fodmap friendly"
-							id="diets-7">
+						<input
+							class="form-check-input"
+							name="diets-7"
+							type="checkbox"
+							value="fodmap friendly"
+							id="diets-7"
+						/>
 						<label class="form-check-label" for="diets-7">
 							Fodmap Friendly
 						</label>
 					</div>
 
 					<div class="form-check">
-						<input class="form-check-input" name="diets-8" type="checkbox" value="ketogenic" id="diets-8">
+						<input
+							class="form-check-input"
+							name="diets-8"
+							type="checkbox"
+							value="ketogenic"
+							id="diets-8"
+						/>
 						<label class="form-check-label" for="diets-8">
 							Ketogenic
 						</label>
 					</div>
 
 					<div class="form-check">
-						<input class="form-check-input" name="diets-9" type="checkbox" value="lacto ovo vegetarian"
-							id="diets-9">
+						<input
+							class="form-check-input"
+							name="diets-9"
+							type="checkbox"
+							value="lacto ovo vegetarian"
+							id="diets-9"
+						/>
 						<label class="form-check-label" for="diets-9">
 							Lacto Ovo Vegetarian
 						</label>
 					</div>
 
 					<div class="form-check">
-						<input class="form-check-input" name="diets-10" type="checkbox" value="primal" id="diets-10">
+						<input
+							class="form-check-input"
+							name="diets-10"
+							type="checkbox"
+							value="primal"
+							id="diets-10"
+						/>
 						<label class="form-check-label" for="diets-10">
 							Primal
 						</label>
 					</div>
-
 				</div>
 				<div class="form-check col-sm-6 col-md-3">
 					<h4 class="mt-3">Popularity</h4>
-					<hr>
+					<hr />
 
 					<div class="form-check">
-						<input class="form-check-input" type="radio" name="sort" value="ascending" id="sort-1">
+						<input
+							class="form-check-input"
+							type="radio"
+							name="sort"
+							value="ascending"
+							id="sort-1"
+						/>
 						<label class="form-check-label" for="sort-1">
 							Ascending
 						</label>
 					</div>
 
 					<div class="form-check">
-						<input class="form-check-input" type="radio" name="sort" value="decreasing" id="sort-2">
+						<input
+							class="form-check-input"
+							type="radio"
+							name="sort"
+							value="decreasing"
+							id="sort-2"
+						/>
 						<label class="form-check-label" for="sort-2">
 							Decreasing
 						</label>
 					</div>
 
-					<br>
-					<hr>
+					<br />
+					<hr />
 					<div class="form-group col-12 text-center">
 						<p id="num_of_results"></p>
 					</div>
 					<div class="form-group col-12">
-						<button id="tags_search_btn" class="btn btn-block btn-outline-warning"
-							>Search tag!</button>
+						<button	id="tags_search_btn" class="btn btn-block btn-outline-warning" disabled>
+							Select a tag!
+						</button>
 					</div>
 				</div>
 			</div>
@@ -579,11 +914,14 @@
 
 {{ recipes }}
 
+<div class="container py-5">
+	<!-- For injecting AJAX results -->
+	<div id="results" class="row justify-content-center">	</div>
+</div>
+
 {% for x in recipes %}
-  {{x}}
-  <hr class="my-3">
-{% endfor %}
+{{ x }}
+<hr class="my-3" />
+{% endfor %} {% endblock main_content %}
 
 
-
-{% endblock main_content %}

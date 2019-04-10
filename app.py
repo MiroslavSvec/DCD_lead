@@ -1,7 +1,10 @@
 import os
-from flask import Flask, render_template, redirect, request, url_for, session, flash
+from flask import Flask, render_template, redirect, request, url_for, session, flash, jsonify
 from flask_pymongo import PyMongo
 from werkzeug.security import generate_password_hash, check_password_hash
+from datetime import datetime
+
+from helper import get_results
 
 """
 app config
@@ -25,7 +28,7 @@ recipes_collection = mongo.db.recipes
 
 @app.route('/')
 @app.route('/index')
-def index():
+def index():    
     return render_template("index.html")
 
 
@@ -70,48 +73,58 @@ def documents():
     return render_template("documents.html", args=args)
 
 
+
 """
 Searches
 """
 
+@app.route('/get_relusts', methods=['POST'])
+def get_relusts():
+	if request.method == "POST":
+		form = request.form.to_dict()
+		recipes = recipes_collection.aggregate([
+			{
+				"$match": {  # Clean the form and use the list of filters in query
+					"$and": get_results(form)
+				}
+			}
+		])
+
+		# Convert the cursor to list
+		recipes = list(recipes)
+		# Create a temporary list where the final results are stored
+		cleaned_recipes = list()
+		# As we do not need Object ID we create a for loop to get rid off in
+		# You could turn the Object ID to string to be able to `jsonify()` it
+		for document in recipes:
+			del document['_id']
+			cleaned_recipes.append(document)
+
+
+		recipes = {
+			'doc' : cleaned_recipes
+		}
+		# Jsonify the list of documents (without IDs) and return it back in form of JSON 
+		return jsonify(recipes)
 
 @app.route('/search', methods=['GET', 'POST'])
 def search():
 	if request.method == 'POST':
-		# Request tha data from form 
+		# Request tha data from form
 		# example {'cuisines-03': 'asian', 'dishTypes-02': 'lunch'}
 		form = request.form.to_dict()
-		# Create a temporary list for storing the filters
-		filters = list()
-		# Create a loop to loop trough each of the key from form
-		for key in form:
-			# Store the original key for later use (cuisines-03)
-			value_key = key
-			# Split the key by "-"
-			# You will get list of 2 values ([cuisines,03])
-			key = key.split("-")
-			# Take the first value of the list (cuisines) as we do not need the number
-			key = key[0]
-			# Create temporary dictionary to which will be our single filter
-			# Each filter MUST be a valid dictionary  
-			search_filter = dict()
-			# Create new k,v pars in above dictionary
-			# {"cuisines" : "asian"}
-			search_filter[key] = form[value_key]
-			# Append the new created filter to our list of filters
-			filters.append(search_filter)
-		
-		# Create single query with 1 +++ filters
 		recipes = recipes_collection.aggregate([
 			{
 				"$match": {
-					"$and": filters
+					"$and": get_results(form)
 				}
 			}
 		])
 		# Pass the results to template
 		return render_template('search.html', recipes=list(recipes))
 	return render_template('search.html')
+
+
 
 
 """
@@ -145,6 +158,8 @@ def user_auth():
             # Log user in (add to session)
             session['user'] = form['username']
             # If the user is admin redirect him to admin area
+            if 'next' in session:
+            	return redirect(session['next'])
             if session['user'] == "admin":
                 return redirect(url_for('admin'))
             else:
@@ -192,6 +207,8 @@ def register():
                 if user_in_db:
                     # Log user in (add to session)
                     session['user'] = user_in_db['username']
+                    if 'next' in session:
+                    	return redirect(session['next'])
                     return redirect(url_for('profile', user=user_in_db['username']))
                 else:
                     flash("There was a problem savaing your profile")
@@ -201,6 +218,8 @@ def register():
             flash("Passwords dont match!")
             return redirect(url_for('register'))
 
+    if 'next' not in session:
+    	session['next'] = request.url
     return render_template("register.html")
 
 # Log out
@@ -221,7 +240,9 @@ def profile(user):
         return render_template('profile.html', user=user_in_db)
     else:
         flash("You must be logged in!")
-        return redirect(url_for('index'))
+        if 'next' not in session:
+        	session['next'] = request.url
+        return redirect(url_for('login'))
 
 # Admin area
 @app.route('/admin')
